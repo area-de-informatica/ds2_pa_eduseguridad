@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UsuariosModule } from './users/usuarios.module';
+import { UsuariosModule } from './usuarios/usuarios.module';
 import { TareasModule } from './tareas/tareas.module';
 import { QuicesModule } from './quices/quices.module';
 import { EvaluacionesModule } from './evaluaciones/evaluaciones.module';
