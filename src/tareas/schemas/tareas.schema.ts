@@ -6,7 +6,7 @@ import { Document } from 'mongoose';
     timestamps: true
 })
 
-export class User extends Document{
+export class Tarea extends Document{
     @Prop()
     username: string;
 
@@ -32,4 +32,4 @@ export class User extends Document{
     updatedAt: Date;    
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const TareaSchema = SchemaFactory.createForClass(Tarea);
