@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose from 'mongoose';
 import { Document } from 'mongoose';
+import { Entrega } from "src/entregas/schemas/entregas.schema";
 
 @Schema({
     timestamps: true
@@ -8,28 +9,34 @@ import { Document } from 'mongoose';
 
 export class Archivo extends Document{
     @Prop()
-    username: string;
-
-    @Prop({ unique: [true, 'Email already exists'] })
-    email: string;
+    fileName: string;
 
     @Prop()
-    password: string;
-
-    @Prop({default: 'guest'})
-    role: string;
-
+    fileExtension: string;
+    
     @Prop()
-    status: string;
-
+    widthPx: number;
+    
     @Prop()
-    createdAt: Date;
-
+    heightPx: number;
+    
     @Prop()
-    picture: string;
-
+    description: string;
+    
     @Prop()
-    updatedAt: Date;    
+    filePath: string;
+    
+    @Prop()
+    size: number;
+    
+    @Prop()
+    fileType: string;
+    
+    @Prop()
+    creationDate: Date;   
+    
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Entrega'})
+    entregas_id: Entrega;
 }
 
 export const ArchivoSchema = SchemaFactory.createForClass(Archivo);

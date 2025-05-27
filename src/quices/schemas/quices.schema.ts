@@ -8,28 +8,34 @@ import { Document } from 'mongoose';
 
 export class Quice extends Document{
     @Prop()
-    username: string;
-
-    @Prop({ unique: [true, 'Email already exists'] })
-    email: string;
+    quicename: string;
 
     @Prop()
-    password: string;
-
-    @Prop({default: 'guest'})
-    role: string;
+    description: string;
 
     @Prop()
-    status: string;
+    attemptDate: string;
 
     @Prop()
-    createdAt: Date;
+    attemptTime: string;
 
     @Prop()
-    picture: string;
+    retryCount: number;
 
     @Prop()
-    updatedAt: Date;    
+    sequence: string;
+
+    @Prop()
+    startDate: Date;
+
+    @Prop()
+    startTime: Date;
+    
+    @Prop()
+    endDate: Date;
+
+    @Prop()
+    endTime: Date;
 }
 
 export const QuiceSchema = SchemaFactory.createForClass(Quice);

@@ -8,28 +8,22 @@ import { Document } from 'mongoose';
 
 export class Foro extends Document{
     @Prop()
-    username: string;
-
-    @Prop({ unique: [true, 'Email already exists'] })
-    email: string;
+    foroName: string;
 
     @Prop()
-    password: string;
-
-    @Prop({default: 'guest'})
-    role: string;
+    description: string;
 
     @Prop()
-    status: string;
+    responseDate: Date;
 
     @Prop()
-    createdAt: Date;
+    responseTime: Date;
+    
+    @Prop()
+    startDate: Date;
 
     @Prop()
-    picture: string;
-
-    @Prop()
-    updatedAt: Date;    
+    endDate: Date;    
 }
 
 export const ForoSchema = SchemaFactory.createForClass(Foro);

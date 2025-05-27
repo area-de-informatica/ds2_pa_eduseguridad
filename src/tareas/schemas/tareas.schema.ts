@@ -8,28 +8,22 @@ import { Document } from 'mongoose';
 
 export class Tarea extends Document{
     @Prop()
-    username: string;
-
-    @Prop({ unique: [true, 'Email already exists'] })
-    email: string;
+    taskName: string;
 
     @Prop()
-    password: string;
-
-    @Prop({default: 'guest'})
-    role: string;
+    description: string;
 
     @Prop()
     status: string;
+    
+    @Prop()
+    attachment: string;
 
     @Prop()
-    createdAt: Date;
+    creationDate: Date;
 
     @Prop()
-    picture: string;
-
-    @Prop()
-    updatedAt: Date;    
+    creationTime: Date;
 }
 
 export const TareaSchema = SchemaFactory.createForClass(Tarea);

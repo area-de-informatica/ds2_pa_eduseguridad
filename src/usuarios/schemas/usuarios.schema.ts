@@ -8,28 +8,37 @@ import { Document } from 'mongoose';
 
 export class Usuario extends Document{
     @Prop()
-    username: string;
+    first_name: string;
 
-    @Prop({ unique: [true, 'Email already exists'] })
+    @Prop()
+    middle_name: string;
+
+    @Prop()
+    last_name: string;
+
+    @Prop()
+    second_last_name: string;
+
+    @Prop()
     email: string;
 
     @Prop()
     password: string;
 
-    @Prop({default: 'guest'})
-    role: string;
+    @Prop()
+    PwdLastSet: Date;
 
     @Prop()
-    status: string;
+    estatus: string;
 
     @Prop()
-    createdAt: Date;
+    lastLogin: Date;
 
     @Prop()
-    picture: string;
-
+    signup_date: Date;
+    
     @Prop()
-    updatedAt: Date;    
+    role: string;    
 }
 
 export const UsuarioSchema = SchemaFactory.createForClass(Usuario);

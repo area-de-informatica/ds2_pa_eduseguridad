@@ -8,28 +8,16 @@ import { Document } from 'mongoose';
 
 export class Modulo extends Document{
     @Prop()
-    username: string;
-
-    @Prop({ unique: [true, 'Email already exists'] })
-    email: string;
-
-    @Prop()
-    password: string;
-
-    @Prop({default: 'guest'})
-    role: string;
+    moduleName: string;
 
     @Prop()
     status: string;
 
     @Prop()
-    createdAt: Date;
+    description: string;
 
     @Prop()
-    picture: string;
-
-    @Prop()
-    updatedAt: Date;    
+    creationDate: Date;    
 }
 
 export const ModuloSchema = SchemaFactory.createForClass(Modulo);

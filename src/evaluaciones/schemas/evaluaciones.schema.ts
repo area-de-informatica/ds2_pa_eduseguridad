@@ -8,28 +8,22 @@ import { Document } from 'mongoose';
 
 export class Evaluacion extends Document{
     @Prop()
-    username: string;
-
-    @Prop({ unique: [true, 'Email already exists'] })
-    email: string;
+    beginDate: Date;
 
     @Prop()
-    password: string;
-
-    @Prop({default: 'guest'})
-    role: string;
+    beginTime: Date;
+    
+    @Prop()
+    totalAttempts: number;
 
     @Prop()
-    status: string;
+    score: number;
 
     @Prop()
-    createdAt: Date;
+    finishDate: Date;
 
     @Prop()
-    picture: string;
-
-    @Prop()
-    updatedAt: Date;    
+    finishTime: Date;    
 }
 
 export const EvaluacionSchema = SchemaFactory.createForClass(Evaluacion);
