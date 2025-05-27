@@ -6,7 +6,7 @@ import { EntregaSchema } from './schemas/entregas.schema';
 
 @Module({
   imports :[
-    MongooseModule.forFeature([{ name: 'User', schema: EntregaSchema }])
+    MongooseModule.forFeature([{ name: 'Entrega', schema: EntregaSchema }])
   ],
   controllers: [EntregasController],
   providers: [EntregasService],

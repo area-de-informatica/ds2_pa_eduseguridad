@@ -6,7 +6,7 @@ import { ArchivoSchema } from './schemas/archivos.schema';
 
 @Module({
   imports :[
-    MongooseModule.forFeature([{ name: 'User', schema: ArchivoSchema }])
+    MongooseModule.forFeature([{ name: 'Archivo', schema: ArchivoSchema }])
   ],
   controllers: [ArchivosController],
   providers: [ArchivosService],

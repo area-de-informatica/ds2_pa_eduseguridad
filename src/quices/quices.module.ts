@@ -6,7 +6,7 @@ import { QuiceSchema } from './schemas/quices.schema';
 
 @Module({
   imports :[
-    MongooseModule.forFeature([{ name: 'User', schema: QuiceSchema }])
+    MongooseModule.forFeature([{ name: 'Quice', schema: QuiceSchema }])
   ],
   controllers: [QuicesController],
   providers: [QuicesService],

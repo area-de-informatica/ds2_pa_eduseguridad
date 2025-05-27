@@ -6,7 +6,7 @@ import { ForoSchema } from './schemas/foro.schema';
 
 @Module({
   imports :[
-    MongooseModule.forFeature([{ name: 'User', schema: ForoSchema }])
+    MongooseModule.forFeature([{ name: 'Foro', schema: ForoSchema }])
   ],
   controllers: [ForosController],
   providers: [ForosService],

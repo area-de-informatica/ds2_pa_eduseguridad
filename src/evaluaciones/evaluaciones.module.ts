@@ -6,7 +6,7 @@ import { EvaluacionSchema } from './schemas/evaluaciones.schema';
 
 @Module({
   imports :[
-    MongooseModule.forFeature([{ name: 'User', schema: EvaluacionSchema }])
+    MongooseModule.forFeature([{ name: 'Evaluacion', schema: EvaluacionSchema }])
   ],
   controllers: [EvaluacionesController],
   providers: [EvaluacionesService],

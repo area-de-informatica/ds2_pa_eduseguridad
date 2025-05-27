@@ -6,7 +6,7 @@ import { TareaSchema } from './schemas/tareas.schema';
 
 @Module({
   imports :[
-    MongooseModule.forFeature([{ name: 'User', schema: TareaSchema }])
+    MongooseModule.forFeature([{ name: 'Tarea', schema: TareaSchema }])
   ],
   controllers: [TareasController],
   providers: [TareasService],
