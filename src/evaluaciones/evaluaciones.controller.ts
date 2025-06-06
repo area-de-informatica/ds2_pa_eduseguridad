@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { EvaluacionesService } from './evaluaciones.service';
-import { CreateEvaluacioneDto } from './dto/create-evaluacione.dto';
-import { UpdateEvaluacioneDto } from './dto/update-evaluacione.dto';
+import { CreateEvaluacioneDto } from './dto/create-evaluacion.dto';
+import { UpdateEvaluacioneDto } from './dto/update-evaluacion.dto';
 
 @Controller('evaluaciones')
 export class EvaluacionesController {
@@ -19,16 +19,16 @@ export class EvaluacionesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.evaluacionesService.findOne(+id);
+    return this.evaluacionesService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateEvaluacioneDto: UpdateEvaluacioneDto) {
-    return this.evaluacionesService.update(+id, updateEvaluacioneDto);
+    return this.evaluacionesService.update(id, updateEvaluacioneDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.evaluacionesService.remove(+id);
+    return this.evaluacionesService.remove(id);
   }
 }

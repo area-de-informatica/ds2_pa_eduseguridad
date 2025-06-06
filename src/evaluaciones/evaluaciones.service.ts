@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
-import { CreateEvaluacioneDto } from './dto/create-evaluacione.dto';
-import { UpdateEvaluacioneDto } from './dto/update-evaluacione.dto';
+import { CreateEvaluacionDto } from './dto/create-evaluacion.dto';
+import { UpdateEvaluacionDto } from './dto/update-evaluacion.dto';
+import { Evaluacion } from './schemas/evaluaciones.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class EvaluacionesService {
-  create(createEvaluacioneDto: CreateEvaluacioneDto) {
-    return 'This action adds a new evaluacione';
+ constructor(@InjectModel(Evaluacion.name) private readonly evaluacionModel: Model<Evaluacion>) {}
+
+  async create(createEvaluacionDto: CreateEvaluacionDto): Promise<Evaluacion> {
+    const createdEvaluacion = new this.evaluacionModel(createEvaluacionDto);
+    return createdEvaluacion.save();
   }
 
-  findAll() {
-    return `This action returns all evaluaciones`;
+  async findAll(): Promise<Evaluacion[]> {
+    return this.evaluacionModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} evaluacione`;
+  async findOne(id: string): Promise<Evaluacion | null> {
+    return this.evaluacionModel.findById(id).exec();
   }
 
-  update(id: number, updateEvaluacioneDto: UpdateEvaluacioneDto) {
-    return `This action updates a #${id} evaluacione`;
+  async update(id: string, updateEvaluacionDto: UpdateEvaluacionDto): Promise<Evaluacion | null> {
+    return this.evaluacionModel.findByIdAndUpdate(id, updateEvaluacionDto, { new: true }).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} evaluacione`;
+  async remove(id: string): Promise<Evaluacion | null> {
+    return this.evaluacionModel.findByIdAndDelete(id).exec();
   }
 }

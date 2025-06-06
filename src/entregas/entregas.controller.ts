@@ -19,16 +19,16 @@ export class EntregasController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.entregasService.findOne(+id);
+    return this.entregasService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateEntregasDto: UpdateEntregasDto) {
-    return this.entregasService.update(+id, updateEntregasDto);
+    return this.entregasService.update(id, updateEntregasDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.entregasService.remove(+id);
+    return this.entregasService.remove(id);
   }
 }

@@ -18,7 +18,7 @@ export class TareasService {
     return this.tareaModel.find().exec();
   }
 
-  async findOne(id: string) {
+  async findOne(id: string): Promise<Tarea | null > {
     return this.tareaModel.findById(id).exec();
   }
 

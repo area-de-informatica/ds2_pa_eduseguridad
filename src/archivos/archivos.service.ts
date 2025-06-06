@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { CreateArchivoDto } from './dto/create-archivo.dto';
 import { UpdateArchivoDto } from './dto/update-archivo.dto';
+import { Archivo } from './schemas/archivos.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class ArchivosService {
-  create(createArchivoDto: CreateArchivoDto) {
-    return 'This action adds a new archivo';
+  constructor(@InjectModel(Archivo.name) private archivoModel: Model<Archivo>) {}
+
+  async create(createArchivoDto: CreateArchivoDto): Promise<Archivo> {
+ return this.archivoModel.create(createArchivoDto);
   }
 
-  findAll() {
-    return `This action returns all archivos`;
+  async findAll(): Promise<Archivo[]> {
+    return this.archivoModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} archivo`;
+  async findOne(id: string): Promise<Archivo | null> {
+    return this.archivoModel.findById(id).exec();
   }
 
-  update(id: number, updateArchivoDto: UpdateArchivoDto) {
-    return `This action updates a #${id} archivo`;
+  async update(id: string, updateArchivoDto: UpdateArchivoDto): Promise<Archivo | null> {
+    return this.archivoModel.findByIdAndUpdate(id, updateArchivoDto, { new: true }).exec();
+  
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} archivo`;
+  async remove(id: string): Promise<Archivo | null> {
+    return this.archivoModel.findByIdAndDelete(id).exec();
   }
 }

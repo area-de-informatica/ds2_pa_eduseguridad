@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { CreateEntregasDto } from './dto/create-entregas.dto';
 import { UpdateEntregasDto } from './dto/update-entregas.dto';
+import { Entrega } from './schemas/entregas.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class EntregasService {
-  create(createEntregasDto: CreateEntregasDto) {
-    return 'This action adds a new entregas';
+  constructor(@InjectModel(Entrega.name) private entregaModel: Model<Entrega>) {}
+
+  async create(createEntregasDto: CreateEntregasDto): Promise<Entrega> {
+    const createdEntrega = new this.entregaModel(createEntregasDto);
+    return createdEntrega.save();
   }
 
-  findAll() {
-    return `This action returns all entregas`;
+  async findAll(): Promise<Entrega[]> {
+    return this.entregaModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} entregas`;
+  async findOne(id: string): Promise<Entrega | null> {
+    return this.entregaModel.findById(id).exec();
   }
 
-  update(id: number, updateEntregasDto: UpdateEntregasDto) {
-    return `This action updates a #${id} entregas`;
+  async update(id: string, updateEntregasDto: UpdateEntregasDto): Promise<Entrega | null> {
+    return this.entregaModel.findByIdAndUpdate(id, updateEntregasDto, { new: true }).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} entregas`;
+  async remove(id: string): Promise<Entrega | null> {
+    return this.entregaModel.findByIdAndDelete(id).exec();
   }
 }

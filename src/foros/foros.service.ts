@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { CreateForoDto } from './dto/create-foro.dto';
 import { UpdateForoDto } from './dto/update-foro.dto';
+import { Foro } from './schemas/foros.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class ForosService {
-  create(createForoDto: CreateForoDto) {
-    return 'This action adds a new foro';
+  constructor(@InjectModel(Foro.name) private foroModel: Model<Foro>) {}
+
+  async create(createForoDto: CreateForoDto): Promise<Foro> {
+    const createdForo = new this.foroModel(createForoDto);
+    return createdForo.save();
   }
 
-  findAll() {
-    return `This action returns all foros`;
+  async findAll(): Promise<Foro[]> {
+    return this.foroModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} foro`;
+  async findOne(id: string): Promise<Foro | null> {
+    return this.foroModel.findById(id).exec();
   }
 
-  update(id: number, updateForoDto: UpdateForoDto) {
-    return `This action updates a #${id} foro`;
+  async update(id: string, updateForoDto: UpdateForoDto): Promise<Foro | null> {
+    return this.foroModel.findByIdAndUpdate(id, updateForoDto, { new: true }).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} foro`;
+  async remove(id: string): Promise<Foro | null> {
+    return this.foroModel.findByIdAndDelete(id).exec();
   }
 }
