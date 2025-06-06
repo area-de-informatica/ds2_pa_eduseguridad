@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { CreateModuloDto } from './dto/create-modulo.dto';
 import { UpdateModuloDto } from './dto/update-modulo.dto';
+import { Modulo } from './schemas/modulos.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class ModulosService {
-  create(createModuloDto: CreateModuloDto) {
-    return 'This action adds a new modulo';
+  constructor(@InjectModel(Modulo.name) private moduloModel: Model<Modulo>) {}
+
+  async create(createModuloDto: CreateModuloDto): Promise<Modulo> {
+    const createdModulo = new this.moduloModel(createModuloDto);
+    return createdModulo.save();
   }
 
-  findAll() {
-    return `This action returns all modulos`;
+  async findAll(): Promise<Modulo[]> {
+    return this.moduloModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} modulo`;
+  async findOne(id: string): Promise<Modulo | null> {
+    return this.moduloModel.findById(id).exec();
   }
 
-  update(id: number, updateModuloDto: UpdateModuloDto) {
-    return `This action updates a #${id} modulo`;
+  async update(id: string, updateModuloDto: UpdateModuloDto): Promise<Modulo | null> {
+    return this.moduloModel.findByIdAndUpdate(id, updateModuloDto, { new: true }).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} modulo`;
+  async remove(id: string): Promise<Modulo | null> {
+    return this.moduloModel.findByIdAndDelete(id).exec();
   }
 }

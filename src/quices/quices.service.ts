@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { CreateQuiceDto } from './dto/create-quice.dto';
 import { UpdateQuiceDto } from './dto/update-quice.dto';
+import { Quice } from './schemas/quices.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class QuicesService {
-  create(createQuiceDto: CreateQuiceDto) {
-    return 'This action adds a new quice';
+  constructor(@InjectModel(Quice.name) private quiceModel: Model<Quice>) {}
+
+  async create(createQuiceDto: CreateQuiceDto): Promise<Quice> {
+    const createdQuice = new this.quiceModel(createQuiceDto);
+    return createdQuice.save();
   }
 
-  findAll() {
-    return `This action returns all quices`;
+  async findAll(): Promise<Quice[]> {
+    return this.quiceModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} quice`;
+  async findOne(id: string): Promise<Quice | null> {
+    return this.quiceModel.findById(id).exec();
   }
 
-  update(id: number, updateQuiceDto: UpdateQuiceDto) {
-    return `This action updates a #${id} quice`;
+  async update(id: string, updateQuiceDto: UpdateQuiceDto): Promise<Quice | null> {
+    return this.quiceModel.findByIdAndUpdate(id, updateQuiceDto, { new: true }).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} quice`;
+  async remove(id: string): Promise<Quice | null> {
+    return this.quiceModel.findByIdAndDelete(id).exec();
   }
 }

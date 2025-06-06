@@ -1,26 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTareaDto } from './dto/create-tarea.dto';
 import { UpdateTareaDto } from './dto/update-tarea.dto';
+import { Tarea } from './schemas/tareas.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class TareasService {
-  create(createTareaDto: CreateTareaDto) {
-    return 'This action adds a new tarea';
+  constructor(@InjectModel(Tarea.name) private tareaModel: Model<Tarea>) {}
+
+  async create(createTareaDto: CreateTareaDto): Promise<Tarea> {
+    const createdTarea = new this.tareaModel(createTareaDto);
+    return createdTarea.save();
   }
 
-  findAll() {
-    return `This action returns all tareas`;
+  async findAll(): Promise<Tarea[]> {
+    return this.tareaModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} tarea`;
+  async findOne(id: string) {
+    return this.tareaModel.findById(id).exec();
   }
 
-  update(id: number, updateTareaDto: UpdateTareaDto) {
-    return `This action updates a #${id} tarea`;
+  async update(id: string, updateTareaDto: UpdateTareaDto): Promise<Tarea | null> {
+    return this.tareaModel.findByIdAndUpdate(id, updateTareaDto, { new: true }).exec();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} tarea`;
+  async remove(id: string): Promise<Tarea | null> {
+    return this.tareaModel.findByIdAndDelete(id).exec()
   }
 }
