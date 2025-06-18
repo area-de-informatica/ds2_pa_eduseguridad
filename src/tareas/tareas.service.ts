@@ -16,11 +16,11 @@ export class TareasService {
   }
 
   async findAll(): Promise<Tarea[]> {
-    return this.tareaModel.find().exec();
+    return this.tareaModel.find().populate('archivos').exec();
   }
 
   async findOne(id: string): Promise<Tarea | null > {
-    return this.tareaModel.findById(id).exec();
+    return this.tareaModel.findById(id).populate('archivos').exec();
   }
 
   async findUserArchivos(userId: string): Promise<Tarea | null> {

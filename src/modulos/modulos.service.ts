@@ -17,11 +17,11 @@ export class ModulosService {
   }
 
   async findAll(): Promise<Modulo[]> {
-    return this.moduloModel.find().exec();
+    return this.moduloModel.find().populate('usuarios').exec();
   }
 
   async findOne(id: string): Promise<Modulo | null> {
-    return this.moduloModel.findById(id).exec();
+    return this.moduloModel.findById(id).populate('usuarios').exec();
   }
 
   async findUserUsuarios(userId: string): Promise<Modulo | null> {

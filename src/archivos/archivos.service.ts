@@ -15,15 +15,15 @@ export class ArchivosService {
   }
 
   async findAll(): Promise<Archivo[]> {
-    return this.archivoModel.find().exec();
+    return this.archivoModel.find().populate('tareas').exec();
   }
 
   async findOne(id: string): Promise<Archivo | null> {
-    return this.archivoModel.findById(id).exec();
+    return this.archivoModel.findById(id).populate('tareas').populate('entregas').exec();
   }
 
   async findUserTareas(userId: string): Promise<Archivo | null> {
-    return this.archivoModel.findById(userId).populate('tareas').exec();
+    return this.archivoModel.findById(userId).populate('tareas').populate('entregas').exec();
   }
 
   async findUserEntregas(userId: string): Promise<Archivo | null> {

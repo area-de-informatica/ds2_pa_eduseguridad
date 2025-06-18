@@ -18,7 +18,7 @@ export class Modulo extends Document{
     description: string;
 
     @Prop()
-    creationDate: Date;   
+    creationDate: string;   
     
     @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Usuario' }])
     usuarios: Usuario[]

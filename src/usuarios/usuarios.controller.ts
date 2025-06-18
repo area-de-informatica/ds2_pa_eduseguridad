@@ -33,7 +33,7 @@ export class UsuariosController {
     return this.usuariosService.remove(id);
   }
 
-  @Get(':id/modulosos')
+  @Get(':id/modulos')
   findUserModulos(@Param('id') id: string) {
     return this.usuariosService.findUserModulos(id);
   }
