@@ -31,4 +31,14 @@ export class ArchivosController {
   remove(@Param('id') id: string) {
     return this.archivosService.remove(id);
   }
+
+  @Get(':id/entregas')
+  findUserEntregas(@Param('id') id: string) {
+    return this.archivosService.findUserEntregas(id);
+  }
+
+  @Get(':id/tareas')
+  findUserTareas(@Param('id') id: string) {
+    return this.archivosService.findUserTareas(id);
+  }
 }

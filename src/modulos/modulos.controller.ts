@@ -9,6 +9,7 @@ export class ModulosController {
 
   @Post()
   create(@Body() createModuloDto: CreateModuloDto) {
+    //console.log('modulo', createModuloDto);
     return this.modulosService.create(createModuloDto);
   }
 
@@ -30,5 +31,10 @@ export class ModulosController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.modulosService.remove(id);
+  }
+
+  @Get(':id/usuarios')
+  findUserUsuarios(@Param('id') id: string) {
+    return this.modulosService.findUserUsuarios(id);
   }
 }

@@ -31,4 +31,9 @@ export class TareasController {
   remove(@Param('id') id: string) {
     return this.tareasService.remove(id);
   }
+
+  @Get(':id/archivos')
+  findUserArchivos(@Param('id') id: string) {
+    return this.tareasService.findUserArchivos(id);
+  }
 }

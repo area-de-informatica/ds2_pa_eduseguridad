@@ -14,14 +14,6 @@ import { ArchivosModule } from './archivos/archivos.module';
 
 @Module({
   imports: [
-    UsuariosModule,
-    ModulosModule,
-    ArchivosModule,
-    EntregasModule,
-    TareasModule,
-    QuicesModule,
-    EvaluacionesModule,
-    ForosModule,
     ConfigModule.forRoot({
     isGlobal: true,
   }),
@@ -32,6 +24,14 @@ import { ArchivosModule } from './archivos/archivos.module';
     }),
     inject: [],
   }),
+    UsuariosModule,
+    ModulosModule,
+    ArchivosModule,
+    EntregasModule,
+    TareasModule,
+    QuicesModule,
+    EvaluacionesModule,
+    ForosModule,
 ],
   controllers: [AppController],
   providers: [AppService],

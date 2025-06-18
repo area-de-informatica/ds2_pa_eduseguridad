@@ -4,6 +4,8 @@ import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { Usuario } from './schemas/usuarios.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { UsuarioSchema } from './schemas/usuarios.schema';
+//import { createUnzip } from 'zlib';
 
 @Injectable()
 export class UsuariosService {
@@ -20,6 +22,10 @@ export class UsuariosService {
 
   async findOne(id: string): Promise<Usuario | null> {
     return this.usuarioModel.findById(id).exec();
+  }
+
+  async findUserModulos(userId: string): Promise<Usuario | null> {
+    return this.usuarioModel.findById(userId).populate('modulos').exec();
   }
 
   async update(id: string, updateUsuarioDto: UpdateUsuarioDto): Promise<Usuario | null> {

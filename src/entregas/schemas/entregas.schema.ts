@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose from 'mongoose';
 import { Document } from 'mongoose';
-import { Archivo } from "src/archivos/schemas/archivos.schema";
+import { Archivo } from '../../archivos/schemas/archivos.schema'
 
 @Schema({
     timestamps: true
@@ -24,7 +24,7 @@ export class Entrega extends Document{
     sendDate: Date;    
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Archivo' })
-    archivos_id: Archivo;
+    archivos: Archivo[]
 }
 
 export const EntregaSchema = SchemaFactory.createForClass(Entrega);

@@ -9,6 +9,7 @@ export class UsuariosController {
 
   @Post()
   create(@Body() createUsuarioDto: CreateUsuarioDto) {
+    //console.log('usuario', createUsuarioDto);
     return this.usuariosService.create(createUsuarioDto);
   }
 
@@ -30,5 +31,10 @@ export class UsuariosController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usuariosService.remove(id);
+  }
+
+  @Get(':id/modulosos')
+  findUserModulos(@Param('id') id: string) {
+    return this.usuariosService.findUserModulos(id);
   }
 }

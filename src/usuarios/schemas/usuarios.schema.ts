@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose from 'mongoose';
 import { Document } from 'mongoose';
+import { Modulo } from '../../modulos/schemas/modulos.schema'
 
 @Schema({
     timestamps: true
@@ -38,7 +39,10 @@ export class Usuario extends Document{
     signup_date: Date;
     
     @Prop()
-    role: string;    
+    role: string;
+    
+    @Prop([{ type: mongoose.Schema.Types.ObjectId, ref: 'Modulo' }])
+    modulos: Modulo[]
 }
 
 export const UsuarioSchema = SchemaFactory.createForClass(Usuario);

@@ -4,6 +4,7 @@ import { UpdateEntregasDto } from './dto/update-entregas.dto';
 import { Entrega } from './schemas/entregas.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { EntregaSchema } from './schemas/entregas.schema';
 
 @Injectable()
 export class EntregasService {
@@ -20,6 +21,10 @@ export class EntregasService {
 
   async findOne(id: string): Promise<Entrega | null> {
     return this.entregaModel.findById(id).exec();
+  }
+
+  async findUserArchivos(userId: string): Promise<Entrega | null> {
+    return this.entregaModel.findById(userId).populate('archivos').exec();
   }
 
   async update(id: string, updateEntregasDto: UpdateEntregasDto): Promise<Entrega | null> {
