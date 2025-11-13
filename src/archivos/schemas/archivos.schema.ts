@@ -39,8 +39,8 @@ export class Archivo extends Document{
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Entrega'})
     entregas: Entrega[]
 
-    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Archivo' })
-    archivos: Archivo[]
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Tarea' })
+    tareas: Tarea[]
 }
 
 export const ArchivoSchema = SchemaFactory.createForClass(Archivo);
