@@ -7,12 +7,6 @@ async function bootstrap() {
 
   app.enableCors();
 
-  //{
-  //  origin: 'http://localhost:3001',
-  //  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  //  credentials: true,
-  //}
-
   const config = new DocumentBuilder()
     .setTitle('Cats example')
     .setDescription('The cats API description')

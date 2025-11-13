@@ -5,7 +5,6 @@ import { Modulo } from './schemas/modulos.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { ModuloSchema } from './schemas/modulos.schema';
-//import { createUnzip } from 'zlib';
 
 @Injectable()
 export class ModulosService {

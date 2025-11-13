@@ -9,7 +9,6 @@ export class ModulosController {
 
   @Post()
   create(@Body() createModuloDto: CreateModuloDto) {
-    //console.log('modulo', createModuloDto);
     return this.modulosService.create(createModuloDto);
   }
 

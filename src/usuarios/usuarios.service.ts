@@ -5,7 +5,6 @@ import { Usuario } from './schemas/usuarios.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { UsuarioSchema } from './schemas/usuarios.schema';
-//import { createUnzip } from 'zlib';
 
 @Injectable()
 export class UsuariosService {
